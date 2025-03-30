@@ -19,6 +19,10 @@ java {
     }
 }
 
+springBoot {
+    mainClass.set("org.esjo.outfitcoordination.OutfitCoordinationApplication")
+}
+
 repositories {
     mavenCentral()
 }

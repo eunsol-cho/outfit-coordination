@@ -41,8 +41,8 @@ public class ProductCategoryService {
     }
 
 
-    public CategoryWisePriceRangeBrandResponse getCategoryWisePriceRangeBrands(String categoryName) {
-        var category = productCategoryDomainService.findCategoryByDisplayName(categoryName);
+    public CategoryWisePriceRangeBrandResponse getCategoryWisePriceRangeBrands(String productCategoryName) {
+        var category = productCategoryDomainService.findCategoryByDisplayName(productCategoryName);
         var minPriceProducts = productDomainService.findMinPriceProductsByCategoryId(category.id());
         var maxPriceProducts = productDomainService.findMaxPriceProductsByCategoryId(category.id());
 

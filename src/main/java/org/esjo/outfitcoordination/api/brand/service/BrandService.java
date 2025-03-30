@@ -57,7 +57,7 @@ public class BrandService {
             totalPrice = totalPrice.add(chosen.price());
 
             categories.add(CategoryPriceDto.builder()
-                    .categoryName(category.displayName())
+                    .productCategoryName(category.displayName())
                     .price(formatPrice(chosen.price())).build()
             );
         }

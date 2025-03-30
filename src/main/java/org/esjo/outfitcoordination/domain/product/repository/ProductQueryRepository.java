@@ -34,7 +34,10 @@ public class ProductQueryRepository {
         var minPriceByCategory = queryFactory
                 .select(product.category.id, product.price.min())
                 .from(product)
-                .where(brandId != null ? product.brand.id.eq(brandId) : null)
+                .where(
+                        brandId != null ? product.brand.id.eq(brandId) : null,
+                        product.deletedAt.isNull()
+                )
                 .groupBy(product.category.id);
 
         return queryFactory
@@ -43,7 +46,8 @@ public class ProductQueryRepository {
                 .innerJoin(product.category, category).fetchJoin()
                 .where(
                         brandId != null ? product.brand.id.eq(brandId) : null,
-                        Expressions.list(product.category.id, product.price).in(minPriceByCategory)
+                        Expressions.list(product.category.id, product.price).in(minPriceByCategory),
+                        product.deletedAt.isNull()
                 )
                 .fetch();
     }
@@ -60,7 +64,10 @@ public class ProductQueryRepository {
         SubQueryExpression<BigDecimal> priceSubQuery = JPAExpressions
                 .select(isMin ? product.price.min() : product.price.max())
                 .from(product)
-                .where(product.category.id.eq(categoryId));
+                .where(
+                        product.category.id.eq(categoryId),
+                        product.deletedAt.isNull()
+                );
 
         return queryFactory
                         .selectFrom(product)
@@ -68,7 +75,8 @@ public class ProductQueryRepository {
                         .innerJoin(product.category, category).fetchJoin()
                         .where(
                                 product.category.id.eq(categoryId),
-                                product.price.eq(priceSubQuery)
+                                product.price.eq(priceSubQuery),
+                                product.deletedAt.isNull()
                         )
                         .fetch();
     }

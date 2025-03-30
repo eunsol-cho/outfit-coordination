@@ -22,6 +22,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
         FROM (
             SELECT p.brand_id, p.category_id, MIN(p.price) AS min_price
             FROM product p
+            WHERE p.deleted_at IS NULL
             GROUP BY p.brand_id, p.category_id
         ) sub
         GROUP BY sub.brand_id

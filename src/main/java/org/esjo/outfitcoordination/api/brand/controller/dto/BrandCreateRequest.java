@@ -10,6 +10,7 @@ import lombok.Builder;
 public record BrandCreateRequest (
         @NotBlank(message = "브랜드명을 입력해주세요.")
         @Size(max = 100, message = "브랜드명은 100자 이하로 입력해주세요.")
+        @Schema(description = "브랜드명", example = "A")
         String name
 ) {
 
