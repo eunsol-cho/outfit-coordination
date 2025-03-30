@@ -1,8 +1,29 @@
 # Outfit Coordination 
 
+## 🛠️ 기술 스택
+
+### ✅ Backend
+- **Java 21**
+- **Spring Boot 3.4**
+    - Spring Web
+    - Spring Validation
+    - Spring Data JPA
+    - Flyway (DB 마이그레이션)
+- **QueryDSL 5.1** (JPA with Jakarta)
+- **MapStruct** (DTO ↔ Entity 매핑)
+- **Lombok** (보일러플레이트 제거)
+
+### ✅ Database
+- **H2 Database** (개발/테스트용 인메모리 DB)
+
+### ✅ API 문서화
+- **SpringDoc OpenAPI 2.8** (Swagger UI 제공)
+
+### ✅ 테스트
+- **JUnit 5** (`spring-boot-starter-test`)
 
 
-## 코드 실행 방법
+## 🏃 빌드 및 실행 방법
 
 
 ### Pre Requisite
@@ -17,7 +38,7 @@ $ docker run -p 8080:8080 outfit-coordination
 ### Swagger UI
 - http://localhost:8080/swagger-ui.html
 
-## 구현 내용
+## 🧢 구현 내용
 
 
 ### 1. 카테고리별 최저가 브랜드 및 가격 조회
