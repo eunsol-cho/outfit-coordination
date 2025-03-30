@@ -28,12 +28,14 @@
 
 ### Pre Requisite
 - Docker 설치
-### Docker Image 생성 & 실행
+### Docker Image 생성 & 실행 & 테스트
 ```shell
-# project root 에서 실행
+# project root 에서 실행 
 $ docker build -t outfit-coordination .
 $ docker run -p 8080:8080 outfit-coordination
 ```
+- docker 이미지 build 시 테스트를 포함한 전체 빌드 수행
+- 로컬 테스트 command : `./gradlew test`
 
 ### Swagger UI
 - http://localhost:8080/swagger-ui.html
