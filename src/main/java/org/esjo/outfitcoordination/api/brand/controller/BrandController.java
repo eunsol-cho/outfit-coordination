@@ -1,6 +1,7 @@
 package org.esjo.outfitcoordination.api.brand.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,14 +37,20 @@ public class BrandController {
     @Operation(summary = "(구현 4) 브랜드 업데이트 ")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBrand(@PathVariable Long id, @RequestBody BrandUpdateRequest request) {
+    public void updateBrand(
+            @Parameter(description = "브랜드 아이디", example = "3")
+            @PathVariable Long id,
+            @RequestBody BrandUpdateRequest request) {
         service.updateBrand(id, request);
     }
 
     @Operation(summary = "(구현 4) 브랜드 삭제 ")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBrand(@PathVariable Long id) {
+    public void deleteBrand(
+            @Parameter(description = "브랜드 아이디", example = "3")
+            @PathVariable Long id
+    ) {
         service.deleteBrand(id);
     }
 }

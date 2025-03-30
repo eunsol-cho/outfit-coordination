@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.esjo.outfitcoordination.domain.product.mapper.BrandEntityMapper;
 import org.esjo.outfitcoordination.domain.product.model.Brand;
 import org.esjo.outfitcoordination.domain.product.repository.BrandRepository;
+import org.esjo.outfitcoordination.domain.product.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.NoSuchElementException;
 public class BrandDomainService {
 
     private final BrandRepository brandRepository;
+    private final ProductRepository productRepository;
     private final BrandEntityMapper mapper;
 
     @Transactional
@@ -35,6 +37,9 @@ public class BrandDomainService {
     public void delete(Long id) {
         var brand = brandRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new NoSuchElementException("브랜드를 찾을 수 없습니다: " + id));
+
+        productRepository.deleteAllByBrandId(brand.getId(), Instant.now());
+
         brand.setDeletedAt(Instant.now());
     }
 }

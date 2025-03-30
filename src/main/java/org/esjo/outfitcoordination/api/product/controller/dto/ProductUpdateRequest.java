@@ -17,7 +17,7 @@ public record ProductUpdateRequest(
         @Schema(description = "상품명", example = "흰색반팔티")
         String name,
 
-        @Schema(description = "상품금액", example = "1000")
+        @Schema(description = "상품금액", example = "100")
         @NotNull @Positive
         BigDecimal price,
 

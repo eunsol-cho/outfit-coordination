@@ -81,11 +81,6 @@ tasks.register<JavaCompile>("generateQuerydslSources") {
     source = sourceSets.main.get().java
     destinationDirectory.set(generatedSourcesDir)
     options.annotationProcessorPath = configurations.annotationProcessor.get()
-    options.compilerArgs.addAll(
-        listOf(
-//            "-Aquerydsl.packageSuffix=.querydsl"
-        )
-    )
 }
 
 tasks.named<JavaCompile>("compileJava") {

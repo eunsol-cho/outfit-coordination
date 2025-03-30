@@ -2,7 +2,9 @@ package org.esjo.outfitcoordination.domain.product.repository;
 
 import org.esjo.outfitcoordination.domain.product.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -10,6 +12,10 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     Optional<ProductEntity> findByIdAndDeletedAtIsNull(Long id);
+
+    @Modifying
+    @Query("UPDATE ProductEntity p SET p.deletedAt = :deletedAt WHERE p.brand.id = :brandId AND p.deletedAt IS NULL")
+    int deleteAllByBrandId(@Param("brandId") Long brandId, @Param("deletedAt") java.time.Instant deletedAt);
 
     interface BrandPriceProjection {
         Long getBrandId();

@@ -1,6 +1,7 @@
 package org.esjo.outfitcoordination.api.productcategory.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWiseLowestPriceBrandResponse;
@@ -27,7 +28,10 @@ public class ProductCategoryController {
 
     @Operation(summary = "(구현 3) 상품 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 가격을 조회")
     @GetMapping("/{productCategoryName}/price-range-brands")
-    public CategoryWisePriceRangeBrandResponse getCategoryWisePriceRangeBrands(@PathVariable String productCategoryName) {
+    public CategoryWisePriceRangeBrandResponse getCategoryWisePriceRangeBrands(
+            @Parameter(description = "상품 카테고리 이름", example = "상의")
+            @PathVariable String productCategoryName
+    ) {
         return service.getCategoryWisePriceRangeBrands(productCategoryName);
     }
 
