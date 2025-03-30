@@ -8,4 +8,5 @@ CREATE TABLE brand (
     updated_at TIMESTAMP NOT NULL
 );
 
-CREATE INDEX idx_brand_name ON brand (name);
+CREATE INDEX idx_brand_id_deleted_at ON brand (id, deleted_at);
+-- CREATE INDEX idx_brand_name ON brand (name);

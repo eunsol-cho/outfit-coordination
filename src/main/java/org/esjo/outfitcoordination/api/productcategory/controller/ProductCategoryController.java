@@ -26,13 +26,13 @@ public class ProductCategoryController {
         return service.getCategoryWiseLowestPriceBrand();
     }
 
-    @Operation(summary = "(구현 3) 상품 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 가격을 조회")
-    @GetMapping("/{productCategoryName}/price-range-brands")
+    @Operation(summary = "(구현 3) 상품 카테고리 코드로 최저, 최고 가격 브랜드와 상품 가격을 조회")
+    @GetMapping("/{productCategoryCode}/price-range-brands")
     public CategoryWisePriceRangeBrandResponse getCategoryWisePriceRangeBrands(
-            @Parameter(description = "상품 카테고리 이름", example = "상의")
-            @PathVariable String productCategoryName
+            @Parameter(description = "상품 카테고리 이름", example = "TOPS")
+            @PathVariable String productCategoryCode
     ) {
-        return service.getCategoryWisePriceRangeBrands(productCategoryName);
+        return service.getCategoryWisePriceRangeBrands(productCategoryCode);
     }
 
 }

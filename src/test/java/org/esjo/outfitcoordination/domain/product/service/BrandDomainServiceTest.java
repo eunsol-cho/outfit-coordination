@@ -85,8 +85,8 @@ class BrandDomainServiceTest {
 
         var category = categoryRepository.save(
                 ProductCategoryEntity.builder()
-                        .code("TOP")
-                        .displayName("상의")
+                        .code("TOPS_")
+                        .displayName("상의_")
                         .displayOrder(1)
                         .build()
         );

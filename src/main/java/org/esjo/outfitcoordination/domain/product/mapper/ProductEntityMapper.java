@@ -7,9 +7,6 @@ import org.mapstruct.*;
 @Mapper
 public interface ProductEntityMapper {
 
-    // brand, category 정보필요시 fetch join 으로 가져오기
-    @Mapping(ignore = true, target = "category")
-    @Mapping(ignore = true, target = "brand")
     Product toModel(ProductEntity productEntity);
 
     @IgnoreAuditedFields

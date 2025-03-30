@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     @Operation(summary = "(구현 4) 브랜드 별 상품 조회 ")
-    @GetMapping("/products")
+    @GetMapping
     public List<ProductResponse> getProducts(
             @Parameter(description = "브랜드 아이디", example = "1")
             @PathVariable Long brandId

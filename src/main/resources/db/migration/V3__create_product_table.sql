@@ -17,5 +17,5 @@ CREATE INDEX idx_product_category_id ON product (category_id);
 CREATE INDEX idx_product_brand_id ON product (brand_id);
 CREATE INDEX idx_product_price ON product (price);
 
-CREATE INDEX idx_product_brand_category_price ON product (brand_id, category_id, price);
-CREATE INDEX idx_product_category_price ON product (category_id, price);
+CREATE INDEX idx_product_brand_id_deleted_at ON product (brand_id, deleted_at);
+CREATE INDEX idx_product_category_deleted_at ON product (category_id, deleted_at);

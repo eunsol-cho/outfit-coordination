@@ -11,4 +11,4 @@ CREATE TABLE product_category (
     CONSTRAINT UK_product_category_code UNIQUE (code)
 );
 
-CREATE INDEX idx_category_name ON product_category (display_name);
+CREATE INDEX idx_category_code_deleted_at ON product_category (code, deleted_at);

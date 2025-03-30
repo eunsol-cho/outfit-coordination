@@ -123,7 +123,7 @@ class ProductDomainServiceMockTest {
 
         var category = ProductCategoryEntity.builder()
                 .id(categoryId)
-                .code("TOP")
+                .code("TOPS")
                 .displayName("상의")
                 .displayOrder(1)
                 .deletedAt(null)

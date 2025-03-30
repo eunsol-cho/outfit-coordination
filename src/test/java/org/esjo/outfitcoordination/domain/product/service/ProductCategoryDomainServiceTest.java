@@ -27,12 +27,12 @@ class ProductCategoryDomainServiceTest {
     EntityManager em;
 
     @Test
-    @DisplayName("카테고리 displayName으로 조회 성공")
-    void findCategoryByDisplayName_shouldReturnCategory() {
+    @DisplayName("카테고리 코드로 조회 성공")
+    void findCategoryByCode_shouldReturnCategory() {
         // given
         var saved = categoryRepository.save(
                 ProductCategoryEntity.builder()
-                        .code("TOP_")
+                        .code("TOPS_")
                         .displayName("상의_")
                         .displayOrder(1)
                         .build()
@@ -42,7 +42,7 @@ class ProductCategoryDomainServiceTest {
         em.clear();
 
         // when
-        ProductCategory result = categoryDomainService.findCategoryByDisplayName(saved.getDisplayName());
+        ProductCategory result = categoryDomainService.findCategoryByCode(saved.getCode());
 
         // then
         assertThat(result).isNotNull();
@@ -51,11 +51,11 @@ class ProductCategoryDomainServiceTest {
     }
 
     @Test
-    @DisplayName("없는 카테고리 이름 조회 시 예외 발생")
+    @DisplayName("없는 카테고리 코드 조회 시 예외 발생")
     void findCategoryByDisplayName_shouldThrowIfNotFound() {
         // when & then
-        assertThatThrownBy(() -> categoryDomainService.findCategoryByDisplayName("없는카테고리"))
+        assertThatThrownBy(() -> categoryDomainService.findCategoryByCode("NON_EXISTENT"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("존재하지 않는 카테고리 이름");
+                .hasMessageContaining("존재하지 않는 카테고리 코드");
     }
 }

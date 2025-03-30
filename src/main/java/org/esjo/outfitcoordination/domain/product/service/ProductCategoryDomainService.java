@@ -15,9 +15,9 @@ public class ProductCategoryDomainService {
     private final ProductCategoryRepository productCategoryRepository;
     private final ProductCategoryEntityMapper mapper;
 
-    public ProductCategory findCategoryByDisplayName(String productCategoryName) {
-        return productCategoryRepository.findByDisplayNameAndDeletedAtIsNull(productCategoryName)
+    public ProductCategory findCategoryByCode(String productCategoryCode) {
+        return productCategoryRepository.findByCodeAndDeletedAtIsNull(productCategoryCode)
                 .map(mapper::toModel)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리 이름입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리 코드입니다."));
     }
 }

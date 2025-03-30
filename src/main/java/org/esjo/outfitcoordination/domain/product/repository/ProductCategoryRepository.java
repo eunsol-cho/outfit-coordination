@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ProductCategoryRepository extends JpaRepository<ProductCategoryEntity, Long> {
 
-    Optional<ProductCategoryEntity> findByDisplayNameAndDeletedAtIsNull(String displayName);
+    Optional<ProductCategoryEntity> findByCodeAndDeletedAtIsNull(String code);
 
     Optional<ProductCategoryEntity> findByIdAndDeletedAtIsNull(Long id);
 }

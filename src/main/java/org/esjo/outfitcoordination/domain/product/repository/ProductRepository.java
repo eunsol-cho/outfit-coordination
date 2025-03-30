@@ -18,7 +18,15 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query("UPDATE ProductEntity p SET p.deletedAt = :deletedAt WHERE p.brand.id = :brandId AND p.deletedAt IS NULL")
     int deleteAllByBrandId(@Param("brandId") Long brandId, @Param("deletedAt") java.time.Instant deletedAt);
 
-    List<ProductEntity> findAllByBrandIdAndDeletedAtIsNull(Long brandId);
+    @Query("""
+        SELECT p
+        FROM ProductEntity p
+        JOIN FETCH p.category c
+        JOIN FETCH p.brand b
+        WHERE p.brand.id = :brandId
+          AND p.deletedAt IS NULL
+    """)
+    List<ProductEntity> findAllByBrandIdFetchJoin(@Param("brandId") Long brandId);
 
     interface BrandPriceProjection {
         Long getBrandId();
