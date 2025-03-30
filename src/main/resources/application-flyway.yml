@@ -1,0 +1,16 @@
+spring:
+  flyway:
+    enabled: true
+
+    # database
+    url: jdbc:h2:mem:outfit-coordination;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;
+    driver-class-name: org.h2.Driver
+    user: svc_user
+    password: outfit123!@#
+
+    # migration files
+    locations: classpath:db/migration
+
+    # config
+    encoding: UTF-8
+    cleanDisabled: false

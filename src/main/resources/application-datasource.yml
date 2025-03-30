@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:outfit-coordination;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;
+    driverClassName: org.h2.Driver
+    username: svc_user
+    password: outfit123!@#
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none # flyway로 스키마 관리
+    show-sql: true
+    open-in-view: true # default is true
+
+

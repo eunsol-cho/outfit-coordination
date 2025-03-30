@@ -1,0 +1,6 @@
+spring.application.name: outfit-coordination
+
+spring.config.import:
+  - classpath:application-datasource.yml
+  - classpath:application-docs.yml
+  - classpath:application-flyway.yml
