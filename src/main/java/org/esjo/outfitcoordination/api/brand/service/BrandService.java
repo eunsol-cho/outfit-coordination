@@ -89,4 +89,10 @@ public class BrandService {
     public void deleteBrand(Long id) {
         brandDomainService.delete(id);
     }
+
+    public List<BrandResponse> getBrands() {
+        return brandDomainService.findAllByDeletedAtIsNull().stream()
+                .map(brandMapper::toBrandResponse)
+                .toList();
+    }
 }

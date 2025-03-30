@@ -93,11 +93,17 @@ $ docker run -p 8080:8080 outfit-coordination
         - 응답: 204 No Content
     3. **브랜드 삭제**: `DELETE /v1/brands/{id}`
         - 응답: 204 No Content
-    4. **상품 추가**: `POST /v1/brands/{brandId}/products`
+    4. **브랜드 조회**: `GET /v1/brands/`
+        - 요청: 추가 파라미터 없음
+        - 응답: `List<BrandResponse>` (브랜드 정보)
+    5. **상품 추가**: `POST /v1/brands/{brandId}/products`
         - 요청: `ProductCreateRequest`
         - 응답: `ProductIdResponse` (생성된 상품 ID)
-    5. **상품 업데이트**: `PUT /v1/brands/{brandId}/products/{id}`
+    6. **상품 업데이트**: `PUT /v1/brands/{brandId}/products/{id}`
         - 요청: `ProductUpdateRequest`
         - 응답: 204 No Content
-    6. **상품 삭제**: `DELETE /v1/brands/{brandId}/products/{id}`
+    7. **상품 삭제**: `DELETE /v1/brands/{brandId}/products/{id}`
         - 응답: 204 No Content
+    8. **상품 조회 (브랜드별)**: `GET /v1/brands/{brandId}/products`
+        - 요청: Long brandId (브랜드 ID)
+        - 응답: `List<ProductResponse>` (상품 정보)

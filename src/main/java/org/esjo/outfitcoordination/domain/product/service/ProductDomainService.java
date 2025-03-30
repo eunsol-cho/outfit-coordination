@@ -110,4 +110,18 @@ public class ProductDomainService {
 
         product.setDeletedAt(Instant.now());
     }
+
+    public List<Product> findAllByBrandIdAndDeletedAtIsNull(Long brandId) {
+        var brand = brandRepository.findByIdAndDeletedAtIsNull(brandId)
+                .orElseThrow(() -> new NoSuchElementException("브랜드를 찾을 수 없습니다: " + brandId));
+
+        // TODO.esjo 커서로 조회
+        var products = productRepository.findAllByBrandIdAndDeletedAtIsNull(brand.getId());
+
+        if (products.isEmpty()) {
+            throw new NoSuchElementException("해당 브랜드에 속한 상품이 없습니다.");
+        }
+
+        return products.stream().map(mapper::toModel).toList();
+    }
 }

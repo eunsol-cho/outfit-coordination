@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -41,5 +42,18 @@ public class BrandDomainService {
         productRepository.deleteAllByBrandId(brand.getId(), Instant.now());
 
         brand.setDeletedAt(Instant.now());
+    }
+
+    public List<Brand> findAllByDeletedAtIsNull() {
+        // TODO.esjo 커서로 조회
+        var brands = brandRepository.findAllByDeletedAtIsNull();
+        if (brands.isEmpty()) {
+            throw new NoSuchElementException("브랜드가 존재하지 않습니다.");
+        }
+
+        return brands.stream()
+                .map(mapper::toModel)
+                .toList();
+
     }
 }

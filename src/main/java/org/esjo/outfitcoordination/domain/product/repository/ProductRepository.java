@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
@@ -16,6 +17,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Modifying
     @Query("UPDATE ProductEntity p SET p.deletedAt = :deletedAt WHERE p.brand.id = :brandId AND p.deletedAt IS NULL")
     int deleteAllByBrandId(@Param("brandId") Long brandId, @Param("deletedAt") java.time.Instant deletedAt);
+
+    List<ProductEntity> findAllByBrandIdAndDeletedAtIsNull(Long brandId);
 
     interface BrandPriceProjection {
         Long getBrandId();

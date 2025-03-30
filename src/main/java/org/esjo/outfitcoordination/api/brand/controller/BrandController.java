@@ -5,13 +5,12 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.esjo.outfitcoordination.api.brand.controller.dto.BrandCreateRequest;
-import org.esjo.outfitcoordination.api.brand.controller.dto.BrandIdResponse;
-import org.esjo.outfitcoordination.api.brand.controller.dto.BrandUpdateRequest;
-import org.esjo.outfitcoordination.api.brand.controller.dto.BrandWiseLowestTotalPriceResponse;
+import org.esjo.outfitcoordination.api.brand.controller.dto.*;
 import org.esjo.outfitcoordination.api.brand.service.BrandService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "브랜드 API")
 @RestController
@@ -52,5 +51,11 @@ public class BrandController {
             @PathVariable Long id
     ) {
         service.deleteBrand(id);
+    }
+
+    @Operation(summary = "(구현 4) 브랜드 조회 ")
+    @GetMapping
+    public List<BrandResponse> getBrands() {
+        return service.getBrands();
     }
 }
