@@ -63,7 +63,7 @@ dependencies {
 }
 
 
-// querydsl <
+// <querydsl
 val generatedSourcesDir = layout.buildDirectory.dir("generated/sources/querydsl").get().asFile
 
 sourceSets {
@@ -86,7 +86,7 @@ tasks.register<JavaCompile>("generateQuerydslSources") {
 tasks.named<JavaCompile>("compileJava") {
     dependsOn("generateQuerydslSources")
 }
-// querydsl >
+// querydsl>
 
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.addAll(

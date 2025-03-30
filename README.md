@@ -104,6 +104,27 @@ $ docker run -p 8080:8080 outfit-coordination
     "highestPriceBrand": { "brandName": "A", "price": "15,000" }
   }
   ```
+  
+
+- **설명**: 카테고리조회
+- **엔드포인트**: `GET /v1/product-categories`
+- **요청**: 추가 파라미터 없음
+- **응답**:
+    - 형식: `List<ProductCategoryResponse>`
+    - 필드:
+        - `id`: 카테고리 ID
+        - `productCategoryCode`: 카테고리 코드
+        - `productCategoryName`: 카테고리 이름
+- **예시**:
+    ```json
+    [
+      {
+        "id": 1,
+        "productCategoryCode": "TOPS",
+        "productCategoryName": "상의"
+      }
+    ]
+    ```
 
 ### 4. 브랜드 및 상품 관리
 - **설명**: 브랜드와 상품을 추가, 수정, 삭제

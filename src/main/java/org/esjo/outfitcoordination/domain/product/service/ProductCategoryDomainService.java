@@ -7,6 +7,9 @@ import org.esjo.outfitcoordination.domain.product.repository.ProductCategoryRepo
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -19,5 +22,17 @@ public class ProductCategoryDomainService {
         return productCategoryRepository.findByCodeAndDeletedAtIsNull(productCategoryCode)
                 .map(mapper::toModel)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리 코드입니다."));
+    }
+
+    public List<ProductCategory> findAllByDeletedAtIsNull() {
+        var categories = productCategoryRepository.findAllByDeletedAtIsNull();
+
+        if (categories.isEmpty()) {
+            throw new NoSuchElementException("카테고리가 존재하지 않습니다.");
+        }
+
+        return categories.stream()
+                .map(mapper::toModel)
+                .toList();
     }
 }

@@ -6,11 +6,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWiseLowestPriceBrandResponse;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWisePriceRangeBrandResponse;
+import org.esjo.outfitcoordination.api.productcategory.controller.dto.ProductCategoryResponse;
 import org.esjo.outfitcoordination.api.productcategory.service.ProductCategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Tag(name = "상품 카테고리 API")
 @RestController
@@ -29,10 +32,16 @@ public class ProductCategoryController {
     @Operation(summary = "(구현 3) 상품 카테고리 코드로 최저, 최고 가격 브랜드와 상품 가격을 조회")
     @GetMapping("/{productCategoryCode}/price-range-brands")
     public CategoryWisePriceRangeBrandResponse getCategoryWisePriceRangeBrands(
-            @Parameter(description = "상품 카테고리 이름", example = "TOPS")
+            @Parameter(description = "상품 카테고리 코드", example = "TOPS")
             @PathVariable String productCategoryCode
     ) {
         return service.getCategoryWisePriceRangeBrands(productCategoryCode);
+    }
+
+    @Operation(summary = "(구현 3) 상품 카테고리 조회 ")
+    @GetMapping
+    public List<ProductCategoryResponse> getCategories() {
+        return service.getCategories();
     }
 
 }

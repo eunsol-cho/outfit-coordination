@@ -2,8 +2,10 @@ package org.esjo.outfitcoordination.api.productcategory.mapper;
 
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.BrandPriceDto;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWiseLowestPriceBrandDto;
+import org.esjo.outfitcoordination.api.productcategory.controller.dto.ProductCategoryResponse;
 import org.esjo.outfitcoordination.api.util.PriceFormatter;
 import org.esjo.outfitcoordination.domain.product.model.Product;
+import org.esjo.outfitcoordination.domain.product.model.ProductCategory;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -17,4 +19,8 @@ public interface ProductCategoryMapper {
     @Mapping(target = "brandName", source = "product.brand.name")
     @Mapping(target = "price", source = "product.price", qualifiedByName = "formatPrice")
     BrandPriceDto toBrandPriceDto(Product product);
+
+    @Mapping(target = "productCategoryName", source = "category.displayName")
+    @Mapping(target = "productCategoryCode", source = "category.code")
+    ProductCategoryResponse toProductCategoryResponse(ProductCategory category);
 }

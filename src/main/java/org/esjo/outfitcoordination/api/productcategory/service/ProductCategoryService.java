@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWiseLowestPriceBrandDto;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWiseLowestPriceBrandResponse;
 import org.esjo.outfitcoordination.api.productcategory.controller.dto.CategoryWisePriceRangeBrandResponse;
+import org.esjo.outfitcoordination.api.productcategory.controller.dto.ProductCategoryResponse;
 import org.esjo.outfitcoordination.api.productcategory.mapper.ProductCategoryMapper;
 import org.esjo.outfitcoordination.domain.policy.TieBreakPolicy;
 import org.esjo.outfitcoordination.domain.product.model.Product;
@@ -89,5 +90,11 @@ public class ProductCategoryService {
                 .items(categories)
                 .totalPrice(formatPrice(totalPrice))
                 .build();
+    }
+
+    public List<ProductCategoryResponse> getCategories() {
+        return productCategoryDomainService.findAllByDeletedAtIsNull().stream()
+                .map(productCategoryMapper::toProductCategoryResponse)
+                .toList();
     }
 }
