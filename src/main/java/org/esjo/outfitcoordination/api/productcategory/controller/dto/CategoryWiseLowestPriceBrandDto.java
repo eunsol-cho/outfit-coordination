@@ -3,7 +3,7 @@ package org.esjo.outfitcoordination.api.productcategory.controller.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 
-@Schema(description = "단일 카테고리에 대한 최저가 브랜드 및 상품 가격 정보를 담는 DTO")
+@Schema(description = "단일 카테고리에 대한 최저가 브랜드 및 상품 가격 정보")
 @Builder(toBuilder = true)
 public record CategoryWiseLowestPriceBrandDto(
 

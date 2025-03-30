@@ -52,16 +52,16 @@ $ docker run -p 8080:8080 outfit-coordination
     - 필드:
         - `items`: 카테고리별 최저가 브랜드와 가격 정보 (리스트)
         - `totalPrice`: 모든 카테고리의 최저가 상품 합산 총액 
-- **예시**:
-  ```json
-  {
-    "items": [
-      { "productCategoryName": "상의", "brandName": "C", "price": "10,000" },
-      { "productCategoryName": "하의", "brandName": "A", "price": "20,000" }
-    ],
-    "totalPrice": "30,000"
-  }
-  ```
+    - **예시**:
+      ```json
+      {
+        "items": [
+          { "productCategoryName": "상의", "brandName": "C", "price": "10,000" },
+          { "productCategoryName": "하의", "brandName": "A", "price": "20,000" }
+        ],
+        "totalPrice": "30,000"
+      }
+      ```
 
 ### 2. 단일 브랜드로 전체 카테고리 상품 구매 시 최저가 조회
 - **설명**: 하나의 브랜드에서 모든 카테고리의 상품을 구매할 때 가장 저렴한 브랜드와 총 비용 조회
@@ -71,39 +71,39 @@ $ docker run -p 8080:8080 outfit-coordination
     - 형식: `BrandWiseLowestTotalPriceResponse`
     - 필드:
         - `lowestTotalPrice`: 최저가 브랜드 정보, 카테고리별 가격, 총액
-- **예시**:
-  ```json
-  {
-    "lowestTotalPrice": {
-      "brandName": "B",
-      "items": [
-        { "productCategoryName": "상의", "price": "11,000" },
-        { "productCategoryName": "하의", "price": "21,000" }
-      ],
-      "total": "32,000"
-    }
-  }
-  ```
+    - **예시**:
+      ```json
+      {
+        "lowestTotalPrice": {
+          "brandName": "B",
+          "items": [
+            { "productCategoryName": "상의", "price": "11,000" },
+            { "productCategoryName": "하의", "price": "21,000" }
+          ],
+          "total": "32,000"
+        }
+      }
+      ```
 
 ### 3. 특정 카테고리의 최저가 및 최고가 브랜드 조회
 - **설명**: 특정 카테고리의 최저가 브랜드와 최고가 브랜드 조회
-- **엔드포인트**: `GET /v1/product-categories/{categoryName}/price-range-brands`
+- **엔드포인트**: `GET /v1/product-categories/{productCategoryCode}/price-range-brands`
 - **요청**:
-    - 경로 파라미터: `categoryName` (예: "상의")
+    - 경로 파라미터: `productCategoryCode` (예: "TOPS")
 - **응답**:
     - 형식: `CategoryWisePriceRangeBrandResponse`
     - 필드:
         - `productCategoryName`: 카테고리 이름
         - `lowestPriceBrand`: 최저가 브랜드와 가격
         - `highestPriceBrand`: 최고가 브랜드와 가격
-- **예시**:
-  ```json
-  {
-    "productCategoryName": "상의",
-    "lowestPriceBrand": { "brandName": "C", "price": "10,000" },
-    "highestPriceBrand": { "brandName": "A", "price": "15,000" }
-  }
-  ```
+    - **예시**:
+      ```json
+      {
+        "productCategoryName": "상의",
+        "lowestPriceBrand": { "brandName": "C", "price": "10,000" },
+        "highestPriceBrand": { "brandName": "A", "price": "15,000" }
+      }
+      ```
   
 
 - **설명**: 카테고리조회
@@ -115,16 +115,16 @@ $ docker run -p 8080:8080 outfit-coordination
         - `id`: 카테고리 ID
         - `productCategoryCode`: 카테고리 코드
         - `productCategoryName`: 카테고리 이름
-- **예시**:
-    ```json
-    [
-      {
-        "id": 1,
-        "productCategoryCode": "TOPS",
-        "productCategoryName": "상의"
-      }
-    ]
-    ```
+    - **예시**:
+        ```json
+        [
+          {
+            "id": 1,
+            "productCategoryCode": "TOPS",
+            "productCategoryName": "상의"
+          }
+        ]
+        ```
 
 ### 4. 브랜드 및 상품 관리
 - **설명**: 브랜드와 상품을 추가, 수정, 삭제

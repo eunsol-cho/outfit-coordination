@@ -38,7 +38,7 @@ public class ProductCategoryController {
         return service.getCategoryWisePriceRangeBrands(productCategoryCode);
     }
 
-    @Operation(summary = "(구현 3) 상품 카테고리 조회 ")
+    @Operation(summary = "상품 카테고리 조회 ")
     @GetMapping
     public List<ProductCategoryResponse> getCategories() {
         return service.getCategories();

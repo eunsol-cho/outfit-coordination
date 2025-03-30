@@ -10,7 +10,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 public record CategoryWiseLowestPriceBrandResponse(
 
-        @ArraySchema(schema = @Schema(description = "카테고리별 최저가격 정보 목록"))
+        @ArraySchema(arraySchema = @Schema(description = "카테고리별 최저가격 정보 목록"))
         List<CategoryWiseLowestPriceBrandDto> items,
 
         @Schema(description = "해당 카테고리들의 최저가격 상품을 모두 합산한 총액", example = "34,100")
